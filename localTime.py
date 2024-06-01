@@ -6,7 +6,7 @@ from logger import debug, error
 def getLocalTimeZoneOffset():
     try:
         timeZoneOffset = -time.timezone
-        debug("timeZoneOffset", str(timeZoneOffset))
+        debug("timeZoneOffset", timeZoneOffset)
         return timeZoneOffset
     except Exception as e:
         error("getTimeZoneOffsetException", e)
@@ -16,7 +16,7 @@ def getLocalTimeZoneOffset():
 def getLocalTimeCurrent():
     try:
         timeCurrent = time.mktime(datetime.today().timetuple())
-        debug("timeCurrent", str(timeCurrent))
+        debug("timeCurrent", timeCurrent)
         return timeCurrent
     except Exception as e:
         error("getTimeCurrentException", e)
