@@ -16,8 +16,8 @@ def getDeviceUsers(deviceConnection):
     try:
         deviceUsers = []
         for record in deviceConnection.get_users():
-            deviceUsers.append({'userId': str(record.uid), 'userPrivilege': str(record.privilege), 'userName': str(
-                record.name), 'userPassword': str(record.password), 'userCustomId': str(record.user_id), 'userGroupId': str(record.group_id)})
+            deviceUsers.append({'userId': record.uid, 'userPrivilege': record.privilege, 'userName': record.name,
+                               'userPassword': record.password, 'userCustomId': record.user_id, 'userGroupId': record.group_id})
         sys.stderr.write("deviceUsers: " + str(len(deviceUsers)) + "\n")
         return deviceUsers
     except Exception as e:
