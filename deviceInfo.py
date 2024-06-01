@@ -1,5 +1,6 @@
 import sys
 import time
+from localTime import getLocalTimeCurrent
 
 def getDeviceTime(deviceConnection):
         try:                
@@ -9,7 +10,16 @@ def getDeviceTime(deviceConnection):
         except Exception as e:                
                 print ("getDeviceTimeException : {}".format(e))
                 return None
-
+        
+def getDeviceTimeOffset(deviceConnection):
+        try:                        
+                timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent() 
+                sys.stderr.write("timeOffset: " + str(timeOffset) + "\n")
+                return timeOffset
+        except Exception as e:                
+                print ("getTimeOffsetException : {}".format(e))
+                return None
+        
 def getDeviceSerial(deviceConnection):
         try:
                 deviceSerial = deviceConnection.get_serialnumber()
