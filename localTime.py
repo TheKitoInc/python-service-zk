@@ -1,23 +1,23 @@
-import sys
 import time
 from datetime import datetime
+from logger import debug, error
 
 
 def getLocalTimeZoneOffset():
     try:
         timeZoneOffset = -time.timezone
-        sys.stderr.write("timeZoneOffset: " + str(timeZoneOffset) + "\n")
+        debug("timeZoneOffset", str(timeZoneOffset))
         return timeZoneOffset
     except Exception as e:
-        print("getTimeZoneOffsetException : {}".format(e))
+        error("getTimeZoneOffsetException", e)
         return None
 
 
 def getLocalTimeCurrent():
     try:
         timeCurrent = time.mktime(datetime.today().timetuple())
-        sys.stderr.write("timeCurrent: " + str(timeCurrent) + "\n")
+        debug("timeCurrent: ", str(timeCurrent))
         return timeCurrent
     except Exception as e:
-        print("getTimeCurrentException : {}".format(e))
+        error("getTimeCurrentException", e)
         return None
