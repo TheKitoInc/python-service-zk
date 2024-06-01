@@ -15,7 +15,7 @@ def getDeviceTime(deviceConnection):
 
 def getDeviceTimeOffset(deviceConnection):
         try:
-                timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent() 
+                timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent()
                 sys.stderr.write("timeOffset: " + str(timeOffset) + "\n")
                 return timeOffset
         except Exception as e:                
@@ -26,8 +26,8 @@ def getDeviceTimeOffset(deviceConnection):
 def getDeviceSerial(deviceConnection):
         try:
                 deviceSerial = deviceConnection.get_serialnumber()
-                sys.stderr.write("deviceSerial: " + deviceSerial + "\n")  
+                sys.stderr.write("deviceSerial: " + deviceSerial + "\n")
                 return deviceSerial                  
         except Exception as e:                
-                print("getDeviceSerial : {}".format(e))     
+                print("getDeviceSerial : {}".format(e))
                 return None
