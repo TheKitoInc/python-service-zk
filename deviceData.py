@@ -1,5 +1,5 @@
-import sys
 import time
+from logger import debug, error
 
 
 def getDeviceRecords(deviceConnection):
@@ -9,10 +9,10 @@ def getDeviceRecords(deviceConnection):
             recordTime = time.mktime(record.timestamp.timetuple())
             deviceRecords.append({'userId': record.uid, 'recordTime': recordTime,
                                  'recordStatus': record.status, 'recordPunch': record.punch})
-        sys.stderr.write("deviceRecords: " + str(len(deviceRecords)) + "\n")
+        debug("deviceRecords", str(len(deviceRecords)))
         return deviceRecords
     except Exception as e:
-        print("getDeviceRecordsException : {}".format(e))
+        error("getDeviceRecordsException", e)
         return None
 
 
@@ -22,8 +22,8 @@ def getDeviceUsers(deviceConnection):
         for user in deviceConnection.get_users():
             deviceUsers.append({'userId': user.uid, 'userPrivilege': user.privilege, 'userName': user.name,
                                'userPassword': user.password, 'userCustomId': user.user_id, 'userGroupId': user.group_id})
-        sys.stderr.write("deviceUsers: " + str(len(deviceUsers)) + "\n")
+        debug("deviceUsers", str(len(deviceUsers)))
         return deviceUsers
     except Exception as e:
-        print("getDeviceUsersException : {}".format(e))
+        error("getDeviceUsersException", e)
         return None
