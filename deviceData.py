@@ -4,8 +4,8 @@ import sys
 def getDeviceRecords(deviceConnection):
     try:
         deviceRecords = deviceConnection.get_attendance()
-        sys.stderr.write("deviceRecordsCount: " +
                          str(len(deviceRecords)) + "\n")
+        sys.stderr.write("deviceRecords: " + str(len(deviceRecords)) + "\n")
         return deviceRecords
     except Exception as e:
         print("getDeviceRecordsException : {}".format(e))
