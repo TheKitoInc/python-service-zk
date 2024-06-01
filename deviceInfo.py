@@ -1,33 +1,33 @@
-import sys
 import time
 from localTime import getLocalTimeCurrent
+from logger import debug, error
 
 
 def getDeviceTime(deviceConnection):
     try:
         timeDevice = time.mktime(deviceConnection.get_time().timetuple())
-        sys.stderr.write("timeCurrent: " + str(timeDevice) + "\n")
+        debug("timeCurrent: ", str(timeDevice))
         return timeDevice
     except Exception as e:
-        print("getDeviceTimeException : {}".format(e))
+        error("getDeviceTimeException", e)
         return None
 
 
 def getDeviceTimeOffset(deviceConnection):
     try:
         timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent()
-        sys.stderr.write("timeOffset: " + str(timeOffset) + "\n")
+        debug("timeOffset: ", str(timeOffset))
         return timeOffset
     except Exception as e:
-        print("getTimeOffsetException : {}".format(e))
+        error("getTimeOffsetException", e)
         return None
 
 
 def getDeviceSerial(deviceConnection):
     try:
         deviceSerial = deviceConnection.get_serialnumber()
-        sys.stderr.write("deviceSerial: " + deviceSerial + "\n")
+        debug("deviceSerial: ", deviceSerial)
         return deviceSerial
     except Exception as e:
-        print("getDeviceSerial : {}".format(e))
+        error("getDeviceSerial", e)
         return None
