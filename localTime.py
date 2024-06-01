@@ -16,7 +16,7 @@ def getLocalTimeZoneOffset():
 def getLocalTimeCurrent():
     try:
         timeCurrent = time.mktime(datetime.today().timetuple())
-        debug("timeCurrent: ", str(timeCurrent))
+        debug("timeCurrent", str(timeCurrent))
         return timeCurrent
     except Exception as e:
         error("getTimeCurrentException", e)
