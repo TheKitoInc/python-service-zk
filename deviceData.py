@@ -9,7 +9,7 @@ def getDeviceRecords(deviceConnection):
             recordTime = time.mktime(record.timestamp.timetuple())
             deviceRecords.append({'userId': record.uid, 'recordTime': recordTime,
                                  'recordStatus': record.status, 'recordPunch': record.punch})
-        debug("deviceRecords", str(len(deviceRecords)))
+        debug("deviceRecords", len(deviceRecords))
         return deviceRecords
     except Exception as e:
         error("getDeviceRecordsException", e)
@@ -22,7 +22,7 @@ def getDeviceUsers(deviceConnection):
         for user in deviceConnection.get_users():
             deviceUsers.append({'userId': user.uid, 'userPrivilege': user.privilege, 'userName': user.name,
                                'userPassword': user.password, 'userCustomId': user.user_id, 'userGroupId': user.group_id})
-        debug("deviceUsers", str(len(deviceUsers)))
+        debug("deviceUsers", len(deviceUsers))
         return deviceUsers
     except Exception as e:
         error("getDeviceUsersException", e)
