@@ -1,0 +1,22 @@
+import sys
+
+
+def getDeviceRecords(deviceConnection):
+    try:
+        deviceRecords = deviceConnection.get_attendance()
+        sys.stderr.write("deviceRecordsCount: " +
+                         str(len(deviceRecords)) + "\n")
+        return deviceRecords
+    except Exception as e:
+        print("getDeviceRecordsException : {}".format(e))
+        return None
+
+
+def getDeviceUsers(deviceConnection):
+    try:
+        deviceUsers = deviceConnection.get_users()
+        sys.stderr.write("deviceUsersCount: " + str(len(deviceUsers)) + "\n")
+        return deviceUsers
+    except Exception as e:
+        print("getDeviceUsersException : {}".format(e))
+        return None
