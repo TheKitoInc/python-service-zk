@@ -6,7 +6,7 @@ from logger import debug, error
 def getDeviceTime(deviceConnection):
     try:
         timeDevice = time.mktime(deviceConnection.get_time().timetuple())
-        debug("timeDevice", str(timeDevice))
+        debug("timeDevice", timeDevice)
         return timeDevice
     except Exception as e:
         error("getDeviceTimeException", e)
@@ -16,7 +16,7 @@ def getDeviceTime(deviceConnection):
 def getDeviceTimeOffset(deviceConnection):
     try:
         timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent()
-        debug("timeOffset", str(timeOffset))
+        debug("timeOffset", timeOffset)
         return timeOffset
     except Exception as e:
         error("getTimeOffsetException", e)
