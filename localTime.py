@@ -2,7 +2,7 @@ import sys
 import time
 from datetime import datetime
 
-def getTimeZoneOffset():
+def getLocalTimeZoneOffset():
         try:
                 timeZoneOffset = -time.timezone
                 sys.stderr.write("timeZoneOffset: " + str(timeZoneOffset) + "\n")
@@ -11,7 +11,7 @@ def getTimeZoneOffset():
                 print ("getTimeZoneOffsetException : {}".format(e))
                 return None
         
-def getTimeCurrent():
+def getLocalTimeCurrent():
         try:                
                 timeCurrent = time.mktime(datetime.today().timetuple())
                 sys.stderr.write("timeCurrent: " + str(timeCurrent) + "\n")
