@@ -1,10 +1,14 @@
 import sys
+import time
 
 
 def getDeviceRecords(deviceConnection):
     try:
-        deviceRecords = deviceConnection.get_attendance()
-                         str(len(deviceRecords)) + "\n")
+        deviceRecords = []
+        for record in deviceConnection.get_attendance():
+            recordTime = time.mktime(record.timestamp.timetuple())
+            deviceRecords.append({'userId': record.uid, 'recordTime': recordTime,
+                                 'recordStatus': record.status, 'recordPunch': record.punch})
         sys.stderr.write("deviceRecords: " + str(len(deviceRecords)) + "\n")
         return deviceRecords
     except Exception as e:
