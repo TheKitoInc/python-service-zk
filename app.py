@@ -2,7 +2,6 @@ from logger import debug, fatal
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
 from deviceInfo import getDeviceSerial, setDeviceTime
 from deviceData import getDeviceUsers, getDeviceRecords
-import json
 from times import getTimes
 
 
@@ -46,14 +45,14 @@ def main(args):
         else:
             deviceRecords = None
 
-        res = json.dumps({
+        output = {
             "device": {
                 "serial": deviceSerial,
             },
             "time": time,
             "users": deviceUsers,
             "records": deviceRecords
-        })
+        }
 
         print(res)
 
