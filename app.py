@@ -1,8 +1,9 @@
 from logger import debug, fatal
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
-from deviceInfo import getDeviceTimeOffset, getDeviceSerial
+from deviceInfo import getDeviceSerial, setDeviceTime
 from deviceData import getDeviceUsers, getDeviceRecords
 import json
+from times import getTimes
 
 
 def main(args):
@@ -26,9 +27,9 @@ def main(args):
     try:
 
         if args.time:
-            deviceTimeOffset = getDeviceTimeOffset(deviceConnection)
+            time = getTimes(deviceConnection)
         else:
-            deviceTimeOffset = None
+            time = None
 
         if args.serial:
             deviceSerial = getDeviceSerial(deviceConnection)
@@ -48,9 +49,8 @@ def main(args):
         res = json.dumps({
             "device": {
                 "serial": deviceSerial,
-                "time": {
-                    "offset": deviceTimeOffset
-                }},
+            },
+            "time": time,
             "users": deviceUsers,
             "records": deviceRecords
         })
