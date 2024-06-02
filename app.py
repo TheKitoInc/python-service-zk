@@ -1,4 +1,4 @@
-from logger import debug, error, fatal
+from logger import debug, fatal
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
 from deviceInfo import getDeviceTimeOffset, getDeviceSerial
 from deviceData import getDeviceUsers, getDeviceRecords
@@ -22,12 +22,13 @@ def main(args):
     if not deviceDisable(deviceConnection):
         deviceDisconnect(deviceConnection)
         return 3
+
     try:
 
         if args.time:
             deviceTimeOffset = getDeviceTimeOffset(deviceConnection)
         else:
-            deviceTimeOffset = 0
+            deviceTimeOffset = None
 
         if args.serial:
             deviceSerial = getDeviceSerial(deviceConnection)
@@ -57,7 +58,7 @@ def main(args):
         print(res)
 
     except Exception as e:
-        error("main", e)
+        fatal("main", e)
 
     deviceEnable(deviceConnection)
     deviceDisconnect(deviceConnection)
