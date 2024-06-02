@@ -47,9 +47,9 @@ def main(args):
             callServer(args.URL, output)
 
         if args.time:
-            time = getTimes(deviceConnection)
-        else:
-            time = None
+            output['time'] = getTimes(deviceConnection)
+            callServer(args.URL, output)
+
         if args.users:
             deviceUsers = getDeviceUsers(deviceConnection)
         else:
@@ -72,7 +72,7 @@ def main(args):
         print(res)
 
         if args.time:
-            if abs(time['deviceOffset']) > 1:
+                if abs(output['time']['deviceOffset']) > 1:
                     syncDeviceTime(deviceConnection)
 
     except Exception as e:
