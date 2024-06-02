@@ -3,11 +3,13 @@ from device import deviceInit, deviceConnect, deviceDisconnect
 import sys
 
 
-def main():
+def main(args):
 
-    host = sys.argv[len(sys.argv)-1]
+    print(args)
 
-    device = deviceInit(host)
+    device = deviceInit(args.host, args.port, args.timeout,
+                        args.password, args.UDP, not args.ping)
+
     if device is None:
         return 1
 
