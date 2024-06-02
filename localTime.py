@@ -3,6 +3,10 @@ from datetime import datetime
 from logger import debug, error
 
 
+def getLocalTimeCurrentObject():
+    return datetime.today()
+
+
 def getLocalTimeZoneOffset():
     try:
         timeZoneOffset = -time.timezone
@@ -15,7 +19,7 @@ def getLocalTimeZoneOffset():
 
 def getLocalTimeCurrent():
     try:
-        timeCurrent = time.mktime(datetime.today().timetuple())
+        timeCurrent = time.mktime(getLocalTimeCurrentObject().timetuple())
         debug("timeCurrent", timeCurrent)
         return timeCurrent
     except Exception as e:
