@@ -51,9 +51,8 @@ def main(args):
             callServer(args.URL, output)
 
         if args.users:
-            deviceUsers = getDeviceUsers(deviceConnection)
-        else:
-            deviceUsers = None
+            output['users'] = getDeviceUsers(deviceConnection)
+            callServer(args.URL, output)
 
         if args.records:
             deviceRecords = getDeviceRecords(deviceConnection)
