@@ -1,5 +1,5 @@
 from logger import debug, error
-from localTime import getLocalTimeCurrent
+from localTime import getLocalTimeCurrent, getLocalTimeZoneOffset
 from deviceInfo import getDeviceTime
 
 
@@ -8,9 +8,10 @@ def getTimes(deviceConnection):
         deviceTime = getDeviceTime(deviceConnection)
         localTime = getLocalTimeCurrent()
         times = {
-            "device": deviceTime,
             "local": localTime,
-            "offset": deviceTime - localTime
+            "localOffset": getLocalTimeZoneOffset(),
+            "device": deviceTime,
+            "deviceOffset": deviceTime - localTime
         }
         debug("times", times)
         return times
