@@ -1,8 +1,18 @@
-from logger import debug, fatal
+from logger import debug, fatal, error
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
 from deviceInfo import getDeviceSerial, setDeviceTime
 from deviceData import getDeviceUsers, getDeviceRecords
+import requests
 from times import getTimes
+
+
+def callServer(url, data):
+    try:
+        response = requests.post(url, json=data)
+        return response.status_code == 200
+    except Exception as e:
+        error("callServer", e)
+        return False
 
 
 def main(args):
