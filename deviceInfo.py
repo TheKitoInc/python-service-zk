@@ -13,7 +13,7 @@ def getDeviceTime(deviceConnection):
         return None
 
 
-def setDeviceTime(deviceConnection):
+def syncDeviceTime(deviceConnection):
     try:
         localCurrentTimeObject = getLocalTimeCurrentObject()
         deviceConnection.set_time(localCurrentTimeObject)
