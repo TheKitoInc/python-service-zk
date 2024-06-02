@@ -7,8 +7,8 @@ def getDeviceRecords(deviceConnection):
         deviceRecords = []
         for record in deviceConnection.get_attendance():
             recordTime = time.mktime(record.timestamp.timetuple())
-            deviceRecords.append({'userId': record.uid, 'recordTime': recordTime,
-                                 'recordStatus': record.status, 'recordPunch': record.punch})
+            deviceRecords.append({'idUser': record.uid, 'time': recordTime,
+                                 'status': record.status, 'punch': record.punch})
         debug("deviceRecords", len(deviceRecords))
         return deviceRecords
     except Exception as e:
@@ -20,8 +20,8 @@ def getDeviceUsers(deviceConnection):
     try:
         deviceUsers = []
         for user in deviceConnection.get_users():
-            deviceUsers.append({'userId': user.uid, 'userPrivilege': user.privilege, 'userName': user.name,
-                               'userPassword': user.password, 'userCustomId': user.user_id, 'userGroupId': user.group_id})
+            deviceUsers.append({'id': user.uid, 'privilege': user.privilege, 'name': user.name,
+                               'password': user.password, 'idCustom': user.user_id, 'idGroup': user.group_id})
         debug("deviceUsers", len(deviceUsers))
         return deviceUsers
     except Exception as e:
