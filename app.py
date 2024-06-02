@@ -19,7 +19,7 @@ def main(args):
 
     debug("args", args)
 
-    if not callServer(args.URL, {"command": "ping"}):
+    if not callServer(args.URL):
         return 11
 
     device = deviceInit(args.host, args.port, args.timeout,
