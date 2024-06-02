@@ -6,7 +6,7 @@ import requests
 from times import getTimes
 
 
-def callServer(url, data):
+def callServer(url, data=None):
     try:
         response = requests.post(url, json=data)
         return response.status_code == 200
