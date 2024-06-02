@@ -58,7 +58,8 @@ def main(args):
             output['users'] = getDeviceRecords(deviceConnection)
             callServer(args.URL, output)
 
-        if args.time:
+        if callServer(args.URL, output):
+            if args.time:
                 if abs(output['time']['deviceOffset']) > 1:
                     syncDeviceTime(deviceConnection)
 
