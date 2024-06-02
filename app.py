@@ -59,16 +59,6 @@ def main(args):
         else:
             deviceRecords = None
 
-        output = {
-            "device": {
-                "serial": deviceSerial,
-            },
-            "time": time,
-            "users": deviceUsers,
-            "records": deviceRecords
-        }
-
-        print(res)
 
         if args.time:
                 if abs(output['time']['deviceOffset']) > 1:
