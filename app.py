@@ -1,6 +1,6 @@
 from logger import debug, fatal, error
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
-from deviceInfo import getDeviceSerial, setDeviceTime
+from deviceInfo import getDeviceSerial, syncDeviceTime
 from deviceData import getDeviceUsers, getDeviceRecords
 import requests
 from times import getTimes
@@ -71,7 +71,7 @@ def main(args):
 
         if args.time:
             if abs(time['deviceOffset']) > 1:
-                setDeviceTime(deviceConnection)
+                    syncDeviceTime(deviceConnection)
 
     except Exception as e:
         fatal("main", e)
