@@ -1,5 +1,5 @@
 import time
-from localTime import getLocalTimeCurrent, getLocalTimeCurrentObject
+from localTime import getLocalTimeCurrentObject
 from logger import debug, error
 
 
@@ -22,16 +22,6 @@ def setDeviceTime(deviceConnection):
     except Exception as e:
         error("setDeviceTimeException", e)
         return False
-
-
-def getDeviceTimeOffset(deviceConnection):
-    try:
-        timeOffset = getDeviceTime(deviceConnection) - getLocalTimeCurrent()
-        debug("timeOffset", timeOffset)
-        return timeOffset
-    except Exception as e:
-        error("getTimeOffsetException", e)
-        return None
 
 
 def getDeviceSerial(deviceConnection):
