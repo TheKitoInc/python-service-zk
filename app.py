@@ -1,6 +1,7 @@
 from logger import debug, error, fatal
-from device import deviceInit, deviceConnect, deviceDisconnect
-import sys
+from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
+from deviceInfo import getDeviceTimeOffset, getDeviceSerial
+from deviceData import getDeviceUsers, getDeviceRecords
 
 
 def main(args):
@@ -17,5 +18,31 @@ def main(args):
     if deviceConnection is None:
         return 2
 
+    if not deviceDisable(deviceConnection):
+        deviceDisconnect(deviceConnection)
+        return 3
+
+    if args.time:
+        deviceTimeOffset = getDeviceTimeOffset(deviceConnection)
+    else:
+        deviceTimeOffset = 0
+
+    if args.serial:
+        deviceSerial = getDeviceSerial(deviceConnection)
+    else:
+        deviceSerial = None
+
+    if args.users:
+        deviceUsers = getDeviceUsers(deviceConnection)
+    else:
+        deviceUsers = None
+
+    if args.records:
+        deviceRecords = getDeviceRecords(deviceConnection)
+    else:
+        deviceRecords = None
+
+    deviceEnable(deviceConnection)
     deviceDisconnect(deviceConnection)
+
     return 0
