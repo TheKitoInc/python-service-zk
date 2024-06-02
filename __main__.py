@@ -13,5 +13,15 @@ parser.add_argument(
 parser.add_argument(
     '--ping', action=argparse.BooleanOptionalAction, default=True)
 
+parser.add_argument(
+    '--serial', action=argparse.BooleanOptionalAction, default=True)
+parser.add_argument(
+    '--time', action=argparse.BooleanOptionalAction, default=True)
+
+parser.add_argument(
+    '--users', action=argparse.BooleanOptionalAction, default=False)
+parser.add_argument(
+    '--records', action=argparse.BooleanOptionalAction, default=False)
+
 if __name__ == '__main__':
     sys.exit(main(parser.parse_args()))
