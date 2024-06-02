@@ -2,11 +2,12 @@ from logger import debug, error, fatal
 from device import deviceInit, deviceConnect, deviceDisconnect, deviceDisable, deviceEnable
 from deviceInfo import getDeviceTimeOffset, getDeviceSerial
 from deviceData import getDeviceUsers, getDeviceRecords
+import json
 
 
 def main(args):
 
-    print(args)
+    debug("args", args)
 
     device = deviceInit(args.host, args.port, args.timeout,
                         args.password, args.UDP, not args.ping)
@@ -21,26 +22,42 @@ def main(args):
     if not deviceDisable(deviceConnection):
         deviceDisconnect(deviceConnection)
         return 3
+    try:
 
-    if args.time:
-        deviceTimeOffset = getDeviceTimeOffset(deviceConnection)
-    else:
-        deviceTimeOffset = 0
+        if args.time:
+            deviceTimeOffset = getDeviceTimeOffset(deviceConnection)
+        else:
+            deviceTimeOffset = 0
 
-    if args.serial:
-        deviceSerial = getDeviceSerial(deviceConnection)
-    else:
-        deviceSerial = None
+        if args.serial:
+            deviceSerial = getDeviceSerial(deviceConnection)
+        else:
+            deviceSerial = None
 
-    if args.users:
-        deviceUsers = getDeviceUsers(deviceConnection)
-    else:
-        deviceUsers = None
+        if args.users:
+            deviceUsers = getDeviceUsers(deviceConnection)
+        else:
+            deviceUsers = None
 
-    if args.records:
-        deviceRecords = getDeviceRecords(deviceConnection)
-    else:
-        deviceRecords = None
+        if args.records:
+            deviceRecords = getDeviceRecords(deviceConnection)
+        else:
+            deviceRecords = None
+
+        res = json.dumps({
+            "device": {
+                "serial": deviceSerial,
+                "time": {
+                    "offset": deviceTimeOffset
+                },
+                "users": deviceUsers,
+                "records": deviceRecords
+            }
+        })
+        print(res)
+
+    except Exception as e:
+        error("main", e)
 
     deviceEnable(deviceConnection)
     deviceDisconnect(deviceConnection)
