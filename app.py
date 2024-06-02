@@ -57,6 +57,10 @@ def main(args):
 
         print(res)
 
+        if args.time:
+            if abs(time['deviceOffset']) > 1:
+                setDeviceTime(deviceConnection)
+
     except Exception as e:
         fatal("main", e)
 
