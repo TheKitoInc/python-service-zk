@@ -55,10 +55,8 @@ def main(args):
             callServer(args.URL, output)
 
         if args.records:
-            deviceRecords = getDeviceRecords(deviceConnection)
-        else:
-            deviceRecords = None
-
+            output['users'] = getDeviceRecords(deviceConnection)
+            callServer(args.URL, output)
 
         if args.time:
                 if abs(output['time']['deviceOffset']) > 1:
