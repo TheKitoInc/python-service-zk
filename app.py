@@ -43,9 +43,8 @@ def main(args):
         }
 
         if args.serial:
-            deviceSerial = getDeviceSerial(deviceConnection)
-        else:
-            deviceSerial = None
+            output['device']['serial'] = getDeviceSerial(deviceConnection)
+            callServer(args.URL, output)
 
         if args.time:
             time = getTimes(deviceConnection)
