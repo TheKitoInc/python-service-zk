@@ -50,11 +50,11 @@ def main(args):
                 "serial": deviceSerial,
                 "time": {
                     "offset": deviceTimeOffset
-                },
-                "users": deviceUsers,
-                "records": deviceRecords
-            }
+                }},
+            "users": deviceUsers,
+            "records": deviceRecords
         })
+
         print(res)
 
     except Exception as e:
