@@ -4,6 +4,7 @@ import argparse
 
 parser = argparse.ArgumentParser(description='ZKDevice Proxy Service')
 parser.add_argument('host', help='Device Hostname / IP Address')
+parser.add_argument('URL', help='API URL')
 parser.add_argument('--port', help='Device port', type=int, default=4370)
 parser.add_argument('--timeout', help='Connection timeout',
                     type=int, default=5)
