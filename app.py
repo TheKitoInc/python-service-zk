@@ -38,6 +38,9 @@ def main(args):
 
     try:
 
+        output = {
+            'device': {}
+        }
 
         if args.serial:
             deviceSerial = getDeviceSerial(deviceConnection)
