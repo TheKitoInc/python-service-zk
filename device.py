@@ -33,3 +33,23 @@ def deviceDisconnect(deviceConnection):
         debug("Status", "Device disconnected")
     except Exception as e:
         error("deviceDisconnectException", e)
+
+
+def deviceDisable(deviceConnection):
+    try:
+        deviceConnection.disable_device()
+        debug("Status", "Device disabled")
+        return True
+    except Exception as e:
+        error("deviceDisableException", e)
+        return False
+
+
+def deviceEnable(deviceConnection):
+    try:
+        deviceConnection.disable_device()
+        debug("Status", "Device enabled")
+        return True
+    except Exception as e:
+        error("deviceEnableException", e)
+        return False
