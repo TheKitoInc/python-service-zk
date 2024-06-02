@@ -38,16 +38,16 @@ def main(args):
 
     try:
 
-        if args.time:
-            time = getTimes(deviceConnection)
-        else:
-            time = None
 
         if args.serial:
             deviceSerial = getDeviceSerial(deviceConnection)
         else:
             deviceSerial = None
 
+        if args.time:
+            time = getTimes(deviceConnection)
+        else:
+            time = None
         if args.users:
             deviceUsers = getDeviceUsers(deviceConnection)
         else:
