@@ -7,7 +7,7 @@ def getDeviceRecords(deviceConnection):
     try:
         deviceRecords = []
         for record in deviceConnection.get_attendance():
-            recordTime = time.mktime(record.timestamp.timetuple())
+            recordTime = int(time.mktime(record.timestamp.timetuple()))
             deviceRecords.append({'id': pair(record.uid, recordTime), 'idUser': record.uid,
                                  'time': recordTime, 'status': record.status, 'punch': record.punch})
         debug("deviceRecords", len(deviceRecords))
