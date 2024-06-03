@@ -6,6 +6,6 @@ usage: python-service-zk [-h] [--port PORT] [--timeout TIMEOUT] [--password PASS
          host URL
 
 
-* Generate event id using UNIXTime + USERId in 64bit int number
+* Generate event id using event UNIXTime + USERId in 64bit int number
 * Add device serial, time, timeOffset to adjust timeStamps
 * Sync device time
