@@ -5,7 +5,7 @@ from logger import debug, error
 
 def getDeviceTime(deviceConnection):
     try:
-        timeDevice = time.mktime(deviceConnection.get_time().timetuple())
+        timeDevice = int(time.mktime(deviceConnection.get_time().timetuple()))
         debug("timeDevice", timeDevice)
         return timeDevice
     except Exception as e:
