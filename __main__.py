@@ -9,6 +9,9 @@ parser.add_argument('--port', help='Device port', type=int, default=4370)
 parser.add_argument('--timeout', help='Connection timeout',
                     type=int, default=5)
 parser.add_argument('--password', help='Device password', type=int, default=0)
+
+parser.add_argument('--timezone', help='Time Zone', default=None)
+
 parser.add_argument(
     '--UDP', action=argparse.BooleanOptionalAction, default=False)
 parser.add_argument(
