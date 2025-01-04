@@ -36,6 +36,12 @@ def main(args):
         deviceDisconnect(deviceConnection)
         return 3
 
+    if args.timezone is not None:
+        import os
+        import time
+        os.environ['TZ'] = args.timezone
+        time.tzset()
+
     try:
 
         output = {
@@ -61,7 +67,8 @@ def main(args):
         if callServer(args.URL, output):
             if args.time:
                 if abs(output['time']['deviceOffset']) > 1:
-                    syncDeviceTime(deviceConnection)
+                    if abs(output['time']['deviceOffset']) < 3600:
+                        syncDeviceTime(deviceConnection)
 
     except Exception as e:
         fatal("main", e)
