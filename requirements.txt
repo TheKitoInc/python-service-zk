@@ -10,4 +10,4 @@ pluggy==1.5.0
 pytest==9.0.3
 pyzk==0.9
 requests==2.33.1
-urllib3==2.6.3
+urllib3==2.7.0
